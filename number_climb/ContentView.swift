@@ -8,14 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var number = 0
+    @State var switch_flag = true
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Text("\(number)")
+            .font(.largeTitle)
+        Button("Tap me") {
+            if number < 0 {
+                switch_flag = true
+            }
+            if number > 50 {
+                switch_flag = false
+            }
+
+            if switch_flag {
+                increase()
+            }
+
+            if !switch_flag {
+                decrease()
+            }
         }
-        .padding()
+    }
+
+    func increase() {
+        let random_int = Int.random(in: 1 ... 10)
+
+        number += random_int
+    }
+
+    func decrease() {
+        let random_int = Int.random(in: 1 ... 10)
+
+        number -= random_int
     }
 }
 
